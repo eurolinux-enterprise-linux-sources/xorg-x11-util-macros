@@ -3,7 +3,7 @@
 
 Summary: X.Org X11 Autotools macros
 Name: xorg-x11-util-macros
-Version: 1.14.0
+Version: 1.17
 Release: 2%{?dist}
 License: MIT
 Group: Development/System
@@ -12,8 +12,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
 Source0:  ftp://ftp.x.org/pub/individual/util/util-macros-%{version}.tar.bz2
-Patch0: util-macros-1.14.0-autoconf-compat.patch
-
 Requires: autoconf automake libtool pkgconfig
 
 %description
@@ -22,16 +20,15 @@ comprise the X Window System.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
-%patch0 -p1
 
 %build
 %configure
-make
+make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install DESTDIR=$RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
 rm -f $RPM_BUILD_ROOT%{_datadir}/util-macros/INSTALL
 
 %clean
@@ -44,12 +41,56 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pkgconfig/xorg-macros.pc
 
 %changelog
-* Mon Jun 27 2011 Adam Jackson <ajax@redhat.com> 1.14.0-2
-- util-macros-1.14.0-autoconf-compat.patch: Undo a warning fix that relies
-  on a macro not shipped in el6's autoconf.
+* Sun Jul 22 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.17-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
-* Thu Jun 23 2011 Dave Airlie <airlied@redhat.com> 1.14.0-1
-- util-macros 1.14 release - needed for -ati build (#713622)
+* Wed Mar 14 2012 Peter Hutterer <peter.hutterer@redhat.com> 1.17-1
+- util-macros 1.17
+
+* Tue Mar 06 2012 Peter Hutterer <peter.hutterer@redhat.com> 1.16.2-1
+- util-macros 1.16.2
+
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.16.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
+* Tue Jan 03 2012 Peter Hutterer <peter.hutterer@redhat.com> 1.16.0-1
+- util-macros 1.16
+
+* Tue Jul 05 2011 Adam Jackson <ajax@redhat.com> 1.15.0-1
+- util-macros 1.15
+
+* Mon May 30 2011 Peter Hutterer <peter.hutterer@redhat.com> 1.14.0-1
+- util-macros 1.14
+
+* Tue Mar 15 2011 Peter Hutterer <peter.hutterer@redhat.com> 1.13.0-1
+- util-macros 1.13
+
+* Mon Feb 28 2011 Peter Hutterer <peter.hutterer@redhat.com> 1.12.0-1
+- util-macros 1.12
+
+* Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.11.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
+* Mon Nov 01 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.11.0-2
+- util-macros 1.11
+
+* Tue Jul 20 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.10.0-2
+- Spec file cleanup. Patch from Parag An. (#226646)
+
+* Mon Jun 28 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.10.0-1
+- util-macros 1.10.0
+
+* Thu Jun 24 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.9.0-1
+- util-macros 1.9.0
+
+* Tue Jun 01 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8.0-1
+- util-macros 1.8.0
+
+* Tue May 18 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.6.0-1
+- util-macros 1.6.0
+
+* Thu Feb 04 2010 Dave Airlie <airlied@redhat.com> 1.5.0-1
+- util-macros 1.5.0
 
 * Mon Dec 14 2009 Adam Jackson <ajax@redhat.com> 1.4.1-1
 - util-macros 1.4.1
