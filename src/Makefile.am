@@ -21,7 +21,7 @@
 
 aclocaldir = $(datadir)/aclocal
 aclocal_DATA = xorg-macros.m4
-dist_doc_DATA = INSTALL
+dist_pkgdata_DATA = INSTALL
 
 # Previous versions used to install xorgversion.m4, now integrated
 # into xorg-macros.m4.  Explicitly remove that old file in order not
@@ -31,8 +31,6 @@ install-data-hook:
 
 pkgconfigdir = $(datadir)/pkgconfig
 pkgconfig_DATA = xorg-macros.pc
-
-EXTRA_DIST = xorg-macros.pc.in
 
 .PHONY: ChangeLog
 

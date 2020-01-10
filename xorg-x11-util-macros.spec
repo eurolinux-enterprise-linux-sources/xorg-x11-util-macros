@@ -3,8 +3,8 @@
 
 Summary: X.Org X11 Autotools macros
 Name: xorg-x11-util-macros
-Version: 1.4.1
-Release: 1%{?dist}
+Version: 1.14.0
+Release: 2%{?dist}
 License: MIT
 Group: Development/System
 URL: http://www.x.org
@@ -12,6 +12,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
 Source0:  ftp://ftp.x.org/pub/individual/util/util-macros-%{version}.tar.bz2
+Patch0: util-macros-1.14.0-autoconf-compat.patch
 
 Requires: autoconf automake libtool pkgconfig
 
@@ -21,6 +22,7 @@ comprise the X Window System.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
+%patch0 -p1
 
 %build
 %configure
@@ -30,6 +32,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 
 make install DESTDIR=$RPM_BUILD_ROOT
+rm -f $RPM_BUILD_ROOT%{_datadir}/util-macros/INSTALL
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -39,9 +42,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING ChangeLog
 %{_datadir}/aclocal/xorg-macros.m4
 %{_datadir}/pkgconfig/xorg-macros.pc
-%{_docdir}/util-macros/INSTALL
 
 %changelog
+* Mon Jun 27 2011 Adam Jackson <ajax@redhat.com> 1.14.0-2
+- util-macros-1.14.0-autoconf-compat.patch: Undo a warning fix that relies
+  on a macro not shipped in el6's autoconf.
+
+* Thu Jun 23 2011 Dave Airlie <airlied@redhat.com> 1.14.0-1
+- util-macros 1.14 release - needed for -ati build (#713622)
+
 * Mon Dec 14 2009 Adam Jackson <ajax@redhat.com> 1.4.1-1
 - util-macros 1.4.1
 

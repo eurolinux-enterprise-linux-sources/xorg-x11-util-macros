@@ -1,0 +1,23 @@
+diff -up util-macros-1.14.0/xorg-macros.m4.in.jx util-macros-1.14.0/xorg-macros.m4.in
+--- util-macros-1.14.0/xorg-macros.m4.in.jx	2011-05-14 12:11:51.000000000 -0400
++++ util-macros-1.14.0/xorg-macros.m4.in	2011-06-27 23:26:03.654230139 -0400
+@@ -64,8 +64,7 @@ AC_PATH_PROGS(RAWCPP, [cpp], [${CPP}], 
+ # which is not the best choice for supporting other OS'es, but covers most
+ # of the ones we need for now.
+ AC_MSG_CHECKING([if $RAWCPP requires -undef])
+-AC_LANG_CONFTEST([Does cpp redefine unix ?
+-		  AC_LANG_DEFINES_PROVIDED])
++AC_LANG_CONFTEST([Does cpp redefine unix ?])
+ if test `${RAWCPP} < conftest.$ac_ext | grep -c 'unix'` -eq 1 ; then
+ 	AC_MSG_RESULT([no])
+ else
+@@ -83,8 +82,7 @@ fi
+ rm -f conftest.$ac_ext
+ 
+ AC_MSG_CHECKING([if $RAWCPP requires -traditional])
+-AC_LANG_CONFTEST([Does cpp preserve   "whitespace"?
+-		  AC_LANG_DEFINES_PROVIDED])
++AC_LANG_CONFTEST([Does cpp preserve   "whitespace"?])
+ if test `${RAWCPP} < conftest.$ac_ext | grep -c 'preserve   \"'` -eq 1 ; then
+ 	AC_MSG_RESULT([no])
+ else

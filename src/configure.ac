@@ -23,7 +23,7 @@ dnl Process this file with autoconf to create configure.
 
 AC_PREREQ([2.60])
 AC_INIT([util-macros],
-        [1.4.1],
+        [1.14.0],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
         [util-macros])
 AC_CONFIG_SRCDIR([Makefile.am])
@@ -40,6 +40,6 @@ m4_include([xorgversion.m4])
 XORG_RELEASE_VERSION
 XORG_CHANGELOG
 
-AC_CONFIG_FILES([xorg-macros.pc])
-AC_CONFIG_FILES([Makefile xorg-macros.m4:xorg-macros.m4.in:xorgversion.m4])
+AC_CONFIG_FILES([xorg-macros.pc
+                 Makefile xorg-macros.m4:xorg-macros.m4.in:xorgversion.m4])
 AC_OUTPUT
