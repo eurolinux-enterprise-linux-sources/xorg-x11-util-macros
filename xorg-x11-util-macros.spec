@@ -3,14 +3,12 @@
 
 Summary: X.Org X11 Autotools macros
 Name: xorg-x11-util-macros
-Version: 1.17
-Release: 2%{?dist}
+Version: 1.19.0
+Release: 3%{?dist}
 License: MIT
 Group: Development/System
 URL: http://www.x.org
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
-
 Source0:  ftp://ftp.x.org/pub/individual/util/util-macros-%{version}.tar.bz2
 Requires: autoconf automake libtool pkgconfig
 
@@ -26,21 +24,37 @@ comprise the X Window System.
 make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
 make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
-rm -f $RPM_BUILD_ROOT%{_datadir}/util-macros/INSTALL
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
 %doc COPYING ChangeLog
 %{_datadir}/aclocal/xorg-macros.m4
 %{_datadir}/pkgconfig/xorg-macros.pc
+%{_datadir}/util-macros
 
 %changelog
+* Sat Jul 05 2014 Dr. Tilmann Bubeck <tilmann@bubecks.de> - 1.19.0-3
+- Include missing INSTALL (bz #1083749)
+
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.19.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Fri Mar 28 2014 Peter Hutterer <peter.hutterer@redhat.com> 1.19.0-1
+- util-macros 1.19.0
+
+* Wed Dec 04 2013 Peter Hutterer <peter.hutterer@redhat.com> 1.18.0-1
+- util-macros 1.18.0
+
+* Mon Sep 09 2013 Peter Hutterer <peter.hutterer@redhat.com> 1.17.1-1
+- util-macros 1.17.1
+
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.17-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
+* Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.17-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Sun Jul 22 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.17-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
