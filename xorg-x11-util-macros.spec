@@ -4,7 +4,7 @@
 Summary: X.Org X11 Autotools macros
 Name: xorg-x11-util-macros
 Version: 1.17
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: MIT
 Group: Development/System
 URL: http://www.x.org
@@ -34,6 +34,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/util-macros/INSTALL
 %{_datadir}/pkgconfig/xorg-macros.pc
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.17-4
+- Mass rebuild 2013-12-27
+
 * Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.17-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
